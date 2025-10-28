@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../lib');
+const { NotImplementedError } = require("../lib");
 
 /**
  * Given two strings, find the number of common characters between them.
@@ -12,11 +12,28 @@ const { NotImplementedError } = require('../lib');
  * Strings have 3 common characters - 2 "a"s and 1 "c".
  */
 
-function getCommonCharacterCount(/* s1, s2 */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function getCommonCharacterCount(s1, s2) {
+  let obj1 = {};
+  let obj2 = {};
+
+  for (let char of s1) {
+    obj1[char] = (obj1[char] || 0) + 1;
+  }
+
+  for (let char of s2) {
+    obj2[char] = (obj2[char] || 0) + 1;
+  }
+
+  let counter = 0;
+  for (let char in obj1) {
+    if (obj2[char]) {
+      counter += Math.min(obj1[char], obj2[char]);
+    }
+  }
+
+  return counter;
 }
 
 module.exports = {
-  getCommonCharacterCount
+  getCommonCharacterCount,
 };
